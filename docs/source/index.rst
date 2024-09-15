@@ -6,12 +6,11 @@
 TAMU Work Types and Presentation Recipes documentation
 ======================================================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
-
+This portal contains philosophy, work and file types, and presentation recipes for future works.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
+   :glob:
 
+   contents/*
