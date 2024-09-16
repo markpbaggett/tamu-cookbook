@@ -10,7 +10,7 @@ This portal contains philosophy, work and file types, and presentation recipes f
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contents:
+   :caption: Introduction:
    :glob:
 
    contents/*

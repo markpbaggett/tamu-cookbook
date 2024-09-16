@@ -49,9 +49,9 @@ heritage institutions. By using PCDM, we allow for more seamless sharing and int
 institutions and platforms and foster collaboration and the ability to create and adopt shared software that can be
 leveraged by any PCDM adopter.
 
-Similarly, the Fedora Commons Repository Ontology is designed to facilitate the modeling, storage, and management of
-digital assets in a semantic, machine-readable way using RDF and make it possible to expose Fedora-curated RDF predicates
-via de-reference-able URIs.
+Similarly, the `Fedora Commons Repository Ontology <https://fedora.info/definitions/v4/2016/10/18/repository>`_ is
+designed to facilitate the modeling, storage, and management of digital assets in a semantic, machine-readable way using
+RDF and make it possible to expose Fedora-curated RDF predicates via de-reference-able URIs.
 
 Like PCDM, utilizing this ontology allows us to express relationships between files and objects in our repository and
 develop tooling that can be used with other repository software.
@@ -146,8 +146,51 @@ or :code:`fedora:hasVersions`:
 III. Avoid Blank Nodes
 ======================
 
+Blank nodes (or anonymous nodes) in RDF are nodes that represent resources without a URI. While they can be useful in
+certain scenarios, it is generally recommended to avoid them because:
+
+1. They are not globally unique and thus a difficult to identify and refer to outside of a specific context.
+2. Blank nodes limit interoperability because they are not identifiable outside of their original RDF graph, making it hard for other systems to link to or reference the resource they represent.
+3. SPARQL queries rely on identifying resources by their URIs. Blank nodes complicate this because they cannot be
+directly referenced in a query. While SPARQL provides ways to query for blank nodes (e.g., using variables to bind to them),
+the lack of a persistent identifier can make queries less efficient and harder to write or optimize.
+4. Blank nodes can make reasoning and inference harder because their identity is unknown and cannot be inferred.
+
+An example of a blank node might be something like this:
+
+.. code-block:: turtle
+
+    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix dc: <http://purl.org/dc/elements/1.1/> .
+    @prefix pcdm: <http://pcdm.org/models#> .
+
+    <http://example/pcdm/object> a pcdm:Object ;
+        rdfs:label "Demo Object" ;
+        dc:creator [
+            a foaf:Person ;
+            rdfs:label "Mark Baggett" ;
+            foaf:familyName "Baggett" ;
+            foaf:firstName "Mark" ;
+            foaf:birthday "10-02" .
+        ] ;
+        pcdm:hasFile <http://example/pcdm/file>.
+
+
 IV. Mint New Objects and Predicates Only as a Last Resort
 =========================================================
 
+In order to make our repository and associated tooling as interoperable as possible with other repositories and associated
+tooling, we will always attempt to avoid minting new ontologies, objects, or predicates. Instead, we will seek out the
+most prevalent ontologies in use by other libraries, archives, and museums.
+
 V. Utilize Dereferenceable and Content Negotiable URIs
 ======================================================
+
+A dereferenceable URI is one that, when accessed, returns relevant data about the resource it identifies. Dereferenceable
+URIs allow users and machines to retrieve information about the resource they represent. When you dereference a URI
+, it should return useful data, such as the RDF description about the resource. Dereferenceable URIs typically resolve
+to machine-readable data (e.g., RDF, JSON-LD) that can also be made available in human-readable forms (HTML). This dual
+utility allows both machines and people to interact with the data. If a URI has separate URIs for machine readable and
+human readable content, the machine readable content is always preferred.  Similarly, if an ontology is available in
+more than one location, the value of the named graph is always preferred.
