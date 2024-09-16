@@ -194,3 +194,5 @@ to machine-readable data (e.g., RDF, JSON-LD) that can also be made available in
 utility allows both machines and people to interact with the data. If a URI has separate URIs for machine readable and
 human readable content, the machine readable content is always preferred.  Similarly, if an ontology is available in
 more than one location, the value of the named graph is always preferred.
+
+For more information about dereferenceable and content negotiable URIs, see `Cool URIs for the Sematic Web <https://www.w3.org/TR/cooluris/#conneg>`_.
