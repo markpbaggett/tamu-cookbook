@@ -10,7 +10,21 @@ This portal contains philosophy, work and file types, and presentation recipes f
 
 .. toctree::
    :maxdepth: 1
-   :caption: Introduction:
+   :caption: Introduction
    :glob:
 
    contents/*
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Components
+   :glob:
+
+   components/*
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Worktypes
+   :glob:
+
+   work-types/*

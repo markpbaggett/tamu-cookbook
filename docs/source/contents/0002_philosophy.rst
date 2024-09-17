@@ -49,7 +49,10 @@ heritage institutions. By using PCDM, we allow for more seamless sharing and int
 institutions and platforms and foster collaboration and the ability to create and adopt shared software that can be
 leveraged by any PCDM adopter.
 
-Similarly, the `Fedora Commons Repository Ontology <https://fedora.info/definitions/v4/2016/10/18/repository>`_ is
+Many PCDM inherits and extends from the ORE Abstract Data Model. Because of this, PCDM doesn't define new Classes and
+Properties for certain concepts and instead chooses to inherit those from `ORE <http://www.openarchives.org/ore/terms/>`_.
+
+The `Fedora Commons Repository Ontology <https://fedora.info/definitions/v4/2016/10/18/repository>`_ is
 designed to facilitate the modeling, storage, and management of digital assets in a semantic, machine-readable way using
 RDF and make it possible to expose Fedora-curated RDF predicates via de-reference-able URIs.
 
