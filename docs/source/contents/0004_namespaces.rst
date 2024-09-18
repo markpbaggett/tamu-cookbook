@@ -24,17 +24,17 @@ limited number of core ontologies.  This document lists those ontologies and how
     - The set of terms provided by the OAI ORE initiative
   * - PCDM Models
     - pcdm
-    - https://pcdm.org/models
+    - https://pcdm.org/models#
     - Base ontology for the Portland Common Data Model intended to underlie a wide array of repository and DAMS applications.
   * - PCDM File Formats Genre
     - pcdmff
-    - https://pcdm.org/2015/10/14/file-format-types
+    - https://pcdm.org/2015/10/14/file-format-types#
     - Provides terms for describing file formats selected from vocabularies such as DCMIType, UDFRS, Nepomuk, Pronom, and MARC Resource Types.
   * - PCDM Use
     - pcdmuse
-    - https://pcdm.org/2021/04/09/use
+    - https://pcdm.org/2021/04/09/use#
     - Ontology for a PCDM extension to add subclasses of PCDM File for the different roles files have in relation to the Object they are attached to.
   * - PCDM Works
     - pcdmworks
-    - https://pcdm.org/2021/04/09/works
+    - https://pcdm.org/2021/04/09/works#
     - Ontology for a PCDM extension that adds subclasses of pcdm:Object to refine the relationships between a work and its constituent parts. Also establishes links to the IIIF Presentation API.
