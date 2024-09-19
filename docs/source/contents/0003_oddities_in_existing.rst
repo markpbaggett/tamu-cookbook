@@ -57,7 +57,7 @@ Currently, :code:`pcdm:hasFile` is used to link binary data streams to :code:`pc
 `this page file <https://api.library.tamu.edu/fcrepo/rest/3b/6f/c3/25/3b6fc325-f6ca-41d8-b91e-8c5db3be8c13/london-collection_objects/11/pages/page_0/files>`_
 and the parent `page resource <https://api.library.tamu.edu/fcrepo/rest/3b/6f/c3/25/3b6fc325-f6ca-41d8-b91e-8c5db3be8c13/london-collection_objects/11/pages/page_0>`_.
 
-Since :code:`pcdm:hasFile` has a range of :code:`pcdm:File`, the object of :code:`pcdm:hasFile` should be the page file
-which would have a :code:`rdf:type` of :code:`pcdm:File`.
+Since :code:`pcdm:hasFile` has a range of :code:`pcdm:File`, the object of :code:`pcdm:hasFile` should be an RDF resource
+represented as node that should have a :code:`rdf:type` of :code:`pcdm:File`.
 
 The link to the binary datastream should be on the :code:`pcdm:File` and be done using a property such as :code:`fedora:hasBinary`.
