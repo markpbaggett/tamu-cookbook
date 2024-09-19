@@ -1,3 +1,136 @@
 =====
 Files
 =====
+
+A :code:`pcdm:File` and its various subclasses are not binary datastreams. Instead, they are RDF resources. In RDF,
+a reource is something that can be identified by a URI and described using RDF properties. A resource is not a binary file,
+but a conceptual resource that describes the file and links to its location or representation.
+
+In PCDM, there are two other ontologies that extend :code:`pcdm:File`:
+
+* `PCDM Use Extension <https://pcdm.org/2021/04/09/use>`_
+* `PCDM File Formats Extension <https://pcdm.org/2015/10/14/file-format-types>`_
+
+These extensions allow us to make something not just a file, but a specific type of file with a specific purpose. Having
+the ability to do this allows us to have more flexibility in our repository and interoperable applications.
+
+-------------
+Minimum Model
+-------------
+
+A simple File may have many more properties, but should look something like this:
+
+.. code-block:: turtle
+
+    @prefix ex: <http://example.org/> .
+    @prefix fedora: <http://fedora.info/definitions/v4/repository#> .
+    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix pcdm: <http://pcdm.org/models#> .
+
+
+    ex:File a pcdm:File ;
+        pcdm:fileOf ex:Object ;
+        fedora:hasBinary <https://path/to/file.bin> .
+
+--------------------
+Rules and Guidelines
+--------------------
+
+A File **MUST**:
+
+* be a RDF resource and an instance of :code:`pcdm:File` with an :code:`rdf:type` property that asserts this.
+* have 1 :code:`fedora:hasBinary` property with :code:`1` binary datastreams if versioning is not enabled.
+* have 0 :code:`fedora:hasBinary` properties and 1 :code:`fedora:hasVersions` property with :code:`1-n` :class:`Version` resources.
+
+A File **SHOULD**:
+
+* have be a :code:`pcdm:File` even if it is also another type from :code:`pcdmuse` or :code:`pcdmff` as classes in neither ontology are direct subclasses.
+
+A File **MAY**:
+
+* have a :code:`rdfs:label` to make the resource more semantically understandable.
+* have a :code:`pcdm:fileOf` property that refers to its parent resource.
+* have other descriptive and technical metadata properties.
+
+--------
+Examples
+--------
+
+An HOCR File
+============
+
+An HOCR (HOCR or hOCR) file is an HTML-based file format used to store the results of Optical Character Recognition (OCR) processing. The format contains both the recognized text and information about the layout of the text on the image, such as font size, position, and structure (like paragraphs, lines, and words). It is commonly used to represent the structure of scanned documents where maintaining the spatial arrangement is essential.
+
+The file is HTML-based and contains the recognized text from a scanned image and precise positioning and size information
+of text blocks, helping to recreate the layout of the original document.
+
+To aid in external services using the text and positioning in something like IIIF presentation, an HOCR file might look
+like this:
+
+.. code-block:: turtle
+
+    @prefix ex: <http://example.org/> .
+    @prefix fedora: <http://fedora.info/definitions/v4/repository#> .
+    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix pcdm: <http://pcdm.org/models#> .
+    @prefix pcdmff: <http://pcdm.org/file-format-types#> .
+
+
+    ex:HOCR a pcdm:File, pcdmff:HTML ;
+        pcdm:fileOf ex:FileSetWithCorrespondingImage ;
+        fedora:hasBinary <https://path/to/file.HTML> .
+
+An Image File that Should be Used as a IIIF Canvas
+==================================================
+
+If we were to ever use Fedora as a true digital assets management system and include files for preservation, we may need
+to differentiate what is included in a IIIF manifest as a Canvas and what is stored in Fedora for preservation but not
+for display.
+
+In this case, a IIIF Canvas should look something like this:
+
+.. code-block:: turtle
+
+    @prefix ex: <http://example.org/> .
+    @prefix fedora: <http://fedora.info/definitions/v4/repository#> .
+    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix pcdm: <http://pcdm.org/models#> .
+    @prefix pcdmuse: <http://pcdm.org/use#> .
+
+
+    ex:CanvasImage a pcdm:File, pcdmuse:ServiceFile ;
+        pcdm:fileOf ex:FileSetWithCorrespondingImage ;
+        fedora:hasBinary <https://path/to/file.jp2> .
+
+An Image File that is just a Preservation File
+==============================================
+
+Conversely, if it is stored for preservation, we might want to store more technical metadata about the binary datastream.
+It also might be less likely to have corresponding files like OCR and HOCR.  In that case, it might look like this:
+
+.. code-block:: turtle
+
+    @prefix ex: <http://example.org/> .
+    @prefix fedora: <http://fedora.info/definitions/v4/repository#> .
+    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix pcdm: <http://pcdm.org/models#> .
+    @prefix pcdmuse: <http://pcdm.org/use#> .
+    @prefix nepomuk: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#> .
+    @prefix exif: <http://www.w3.org/2003/12/exif/ns#> .
+    @prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+    @prefix premis: <http://www.loc.gov/premis/rdf/v1#> .
+
+
+    ex:PreservationImage a pcdm:File, pcdmuse:PreservationFile ;
+        pcdm:fileOf ex:Image Work ;
+        fedora:hasBinary <https://path/to/preservation-file.tif> .
+        ebucore:width "2106"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        ebucore:fileSize "17765536"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        premis:hasSize "17765536"^^<http://www.w3.org/2001/XMLSchema#long> ;
+        exif:orientation "normal*"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        exif:colorSpace "RGB"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        ebucore:hasMimeType "image/tiff"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        ebucore:height "2808"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        nepomuk:hashValue "99d14ee8c28517e10c637e0e0a675b94"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        ebucore:filename "preservation-file.tif"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        exif:software "Adobe Photoshop CS2 Windows"^^<http://www.w3.org/2001/XMLSchema#string> .

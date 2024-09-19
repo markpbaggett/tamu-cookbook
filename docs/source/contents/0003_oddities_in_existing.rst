@@ -46,8 +46,8 @@ apply to either class have a domain of :code:`ore:Aggregation`, meaning you can 
 If the intention was to make these instances of :code:`pcdm:Object` was to make them more flexible (let them contain files),
 this decision to use :code:`pcdm:Object` seems okay although I could not find an example of a collection with files. If
 not, :code:`pcdm:Collection` is more correct. If we keep these as instances of :code:`pcdm:Object` we should consider
-adding a :code:`rdf:type` from another ontology that states these are more than :code:`pcdm:Object`s and are some more
-close to collections.
+adding a :code:`rdf:type` from another ontology that states these are more than :code:`pcdm:Object` resources and are
+something more close to the idea of a collection.
 
 -------------------------------------------------------
 Use of pcdm:hasFile does not Adhere to rdfs:range Rules

@@ -9,6 +9,8 @@ For this specific use case, the PCDM Works ontology defines the :code:`pcdmworks
 Minimum Model
 -------------
 
+A simple fileset may have many more properties, but should look something like this:
+
 .. code-block:: turtle
 
     @prefix ex: <http://example.org/> .
@@ -30,19 +32,18 @@ A FileSet **MUST**:
 * be an instance of :code:`pcdmworks:FileSet` via the :code:`rdf:type` property.
 * have 1 :code:`pcdm:hasFile` property with :code:`1-n` :code:`pcdm:File` resources.
 
-A FileSet **SHOULD**:
-
 A FileSet **MAY**:
 
 * have a :code:`rdfs:label` to make the resource more semantically understandable.
+* have a :code:`pcdm:memberOf` property that refers to its parent resource.
 * have other descriptive metadata properties.
 
 -------------------
 Real World Examples
 -------------------
 
-The Service files of a page of a book
-=====================================
+A Page of a Book and the Files Needed to Present It
+===================================================
 
 A Book work may have many pages.  Each page may be represented by an image of the page, with OCR and HOCR or ALTO XML
 that coordiante to specific pixels on the page image.  A :code:`FileSet` should be used in this instance:
