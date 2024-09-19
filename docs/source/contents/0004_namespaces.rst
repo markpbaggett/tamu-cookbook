@@ -38,3 +38,7 @@ limited number of core ontologies.  This document lists those ontologies and how
     - pcdmworks
     - https://pcdm.org/2021/04/09/works#
     - Ontology for a PCDM extension that adds subclasses of pcdm:Object to refine the relationships between a work and its constituent parts. Also establishes links to the IIIF Presentation API.
+  * - Internet Assigned Numbers Authority
+    - iana
+    - http://www.iana.org/assignments/relation/
+    - This specification defines a model for the relationships between resources on the Web ("links") and the type of those relationship ("link relation types").

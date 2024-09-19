@@ -48,8 +48,13 @@ A File **SHOULD**:
 
 A File **MAY**:
 
-* have a :code:`rdfs:label` to make the resource more semantically understandable.
+* have :code:`0-n` :code:`rdfs:label` values to make the resource more semantically understandable.
 * have a :code:`pcdm:fileOf` property that refers to its parent resource.
+* have :code:`0-1` :code:`dcterms:extent` values with file size represented as bytes.
+* have :code:`0-1` :code:`dc:format` with the MIME type of the file.
+* have :code:`0-n` checksums. If using multiple algorithms, you can use different properties or URN syntax.
+* have :code:`0-1` :code:`dcterms:created` values with the creation date of the file.
+* have :code:`0-1` :code:`dcterms:modified` values with the last modification date.
 * have other descriptive and technical metadata properties.
 
 --------
