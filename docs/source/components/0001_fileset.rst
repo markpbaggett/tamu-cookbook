@@ -53,6 +53,7 @@ that coordiante to specific pixels on the page image.  A :code:`FileSet` should 
     @prefix ex: <http://example.org/> .
     @prefix fedora: <http://fedora.info/definitions/v4/repository#> .
     @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
     @prefix pcdm: <http://pcdm.org/models#> .
     @prefix pcdmworks: <http://pcdm.org/works#> .
     @prefix pcdmuse: <http://pcdm.org/use#> .

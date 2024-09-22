@@ -4,8 +4,8 @@ Proxy
 
 Any repository object that is a subclass of :code:`ore:Aggregation` can be ordered by being represented by a :code:`ore:Proxy`.
 This includes :code:`pcdm:Collection`, :code:`pcdm:Object`, and any subclass of :code:`pcdm:Object` including
-:code:`pcdmworks:FileSet`. A :code:`pcdm:File` is not an instance of a :code:`ore:Aggregation` so it cannot be ordered
-unless it is a part of :code:`pcdmworks:FileSet`.
+:code:`pcdmworks:FileSet` or :code:`pcdmworks:Range`. A :code:`pcdm:File` is not an instance of a :code:`ore:Aggregation`
+so it cannot be ordered unless it is a part of :code:`pcdmworks:FileSet`.
 
 Any member of a work that does not have an ordering proxy node is assumed to be unordered according to the PCDM ordering
 extension.  To keep things simple for us, we assume multi-canvased works will have a proxy node for any canvas.  Anything
@@ -68,6 +68,7 @@ omitted.
     @prefix iana: <http://www.iana.org/assignments/relation/> .
     @prefix ore: <http://www.openarchives.org/ore/1.0/datamodel#> .
     @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
     @prefix pcdm: <http://pcdm.org/models#> .
     @prefix pcdmworks: <http://pcdm.org/works#> .
     @prefix pcdmuse: <http://pcdm.org/use#> .
