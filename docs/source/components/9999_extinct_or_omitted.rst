@@ -4,6 +4,8 @@ Extinct Components or Intentionally Omitted
 
 This section acknowledges and gives reasoning for classes or properties that were intentionally left out.
 
+This can be revisited or changed if necessary.
+
 ------------------
 pcdmworks:TopRange
 ------------------
@@ -13,3 +15,10 @@ be the parent Range in a book.  This was due to requirements for the IIIF Presen
 top most range in a sequence needed a :code:`viewingHint="top"` property.  Since version three, this is no longer required
 and complex hierarchy can be modelled simply with the :code:`pcdmworks:Range` class and properties and classes from :code:`iana`
 and :code:`ore`.
+
+-----------
+pcdm:Object
+-----------
+
+The :code:`pcdm:Object` class is extended by other subclasses that add much more flexibility. For now, :code:`pcdm:Object`
+has been dropped in lieu of its subclasses.
