@@ -1,3 +1,52 @@
 ====
 Work
 ====
+
+The PCDM Works extension defines a subclass of :code:`pcdm:Object` called :code:`pcdmworks:Work`. A work is an
+intellectual entity, such as a book, film, dissertation, etc that has member Objects representing their physical
+structure (e.g., pages in a book or sections in a book), FileSets to maintain representations of the entire resource
+(e.g. the OCR, HOCR, and Image for an Canvas), and TopRanges and Ranges representing their logical structure or
+structures (e.g., sections and chapters in a book).
+
+-------------
+Minimum Model
+-------------
+
+A simple :code:`Work` may have many more properties, but should look something like this:
+
+.. code-block:: turtle
+
+    @prefix ex: <http://example.org/> .
+    @prefix pcdm: <http://pcdm.org/models#> .
+    @prefix pcdmworks: <http://pcdm.org/works#> .
+    @prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+    ex:Work a pcdmworks:Work ;
+        dc:title "An Example Image" ;
+        dc:rights <http://rightsstatements.org/vocab/InC-EDU/1.0/> ;
+        dc:format "reformatted digital" ;
+        dc:type "StillImage" ;
+        dc:publisher "Texas A & M University. Libraries" ;
+        pcdm:memberOf ex:Collection ;
+        pcdm:hasMember ex:FileSet .
+
+--------------------
+Rules and Guidelines
+--------------------
+
+A Work **MUST**:
+
+* be an instance of :code:`pcdmworks:Work` via the :code:`rdf:type` property.
+* be related to a parent Collection or Work via :code:`pcdm:memberOf` or :code:`pcdm:hasMember` to avoid orphanage.
+* have mandatory descriptive elements as stated by `Metadata Guidelines for Digital Resources at Texas A&M University Libraries <https://drive.google.com/file/d/1uN8FHSM8WrziIImwJ1ji6H3GxwGh4Cwe/view?usp=sharing>`_
+
+A Work **SHOULD**:
+
+* be related to a :code:`pcdmworks:FileSet` or other :code:`pcdm:Object` instance via :code:`pcdm:hasMember`.
+
+A Proxy **MAY**:
+
+* have other descriptive metadata properties.
+* have many objects or filesets.
+* have proxies if the canvases in the item are ordered.
+* have ranges if the work has sections.
