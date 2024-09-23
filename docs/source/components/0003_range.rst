@@ -133,3 +133,8 @@ For full examples of a completed object, see the work-types or recipes section.
         ore:proxyIn ex:BookWork ;
         ore:proxyFor ex:BackCover ;
         iana:prev ex:ChapterThree .
+
+A Book with Complex Hierarchy
+=============================
+
+We need a more complex example as the above likely won't work for places like National Library of Wales.
