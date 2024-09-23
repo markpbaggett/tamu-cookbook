@@ -137,7 +137,7 @@ things:
         pcdm:memberOf ex:BookWork ;
         pcdm:hasMember ex:BookPageSixFileset .
 
-    # This is a Proxy for the chapter one range in a IIIF Manfiest
+    # This is a Proxy for the chapter one range in a IIIF Manifest
     ex:ProxyForChapterOne a ore:Proxy ;
         ore:proxyIn ex:BookWork ;
         ore:proxyFor ex:ChapterOne ;
@@ -149,7 +149,7 @@ things:
         pcdm:memberOf ex:BookWork ;
         pcdm:hasMember ex:BookPageThirtyThreeFileset .
 
-    # This is a Proxy for the back cover in a IIIF Manfiest
+    # This is a Proxy for the back cover in a IIIF Manifest
     ex:ProxyForBackCover a ore:Proxy ;
         ore:proxyIn ex:BookWork ;
         ore:proxyFor ex:BackCover ;

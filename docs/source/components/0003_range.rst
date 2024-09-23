@@ -94,7 +94,7 @@ For full examples of a completed object, see the work-types or recipes section.
 
     # This is a Fileset that includes the files used by Canvas 1 in the presentation manifest.
     ex:BookPageOneFileset a pcdmworks:Fileset ;
-        rdfs:label "Front Cover" ;
+        rdfs:label "Page One" ;
         pcdm:memberOf ex:BookWork ;
         pcdm:hasFile ex:Image, ex:HOCR, ex:OCR .
 
@@ -112,7 +112,7 @@ For full examples of a completed object, see the work-types or recipes section.
 
     # This is a Range that represents Chapter 1 of a Book and points to the page 6 fileset
     ex:ChapterOne a pcdmworks:Range ;
-        rdfs:label "Front Cover" ;
+        rdfs:label "Chapter One" ;
         pcdm:memberOf ex:BookWork ;
         pcdm:hasMember ex:BookPageSixFileset .
 
