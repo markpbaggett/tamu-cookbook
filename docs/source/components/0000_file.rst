@@ -1,6 +1,6 @@
-=====
-Files
-=====
+====
+File
+====
 
 A :code:`pcdm:File` and its various subclasses are not binary datastreams. Instead, they are RDF resources. In RDF,
 a reource is something that can be identified by a URI and described using RDF properties. A resource is not a binary file,
