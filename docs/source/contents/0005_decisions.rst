@@ -14,3 +14,9 @@ I still need to understand more about the Fedora APIs to make a recommendation. 
 ideas in the Fedora 3.8 API were dropped in Fedora 4 (e.g. getRelationships). Because of this, we need to think more about
 directionality and the API before we determine the relationship between properties and instance of classes.
 
+-----------------------
+Existing Fedora Content
+-----------------------
+
+We have a lot of content already modelled in Fedora.  My instinct is to keep that stuff modelled as is and instead build
+logic to look for new models whether than readjusting.  Can we do that?
