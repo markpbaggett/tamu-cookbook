@@ -50,10 +50,10 @@ develop tooling that can be used with other repository software.
 II. Adhere to "rdfs:domain" and "rdfs:range" Properties
 =======================================================
 
-When adopting predicates and models for work and file types, we adhere to rules set forth in :code:`rdfs:domain` and
+When adopting predicates and classes for work and file types, we adhere to rules set forth in :code:`rdfs:domain` and
 :code:`rdfs:range` properties.
 
-:code:`rdfs:domain`, or `<https:>`_, is a property in RDF Schema (RDFS) that specifies the class (or classes) of
+:code:`rdfs:domain` is a property in RDF Schema (RDFS) that specifies the class (or classes) of
 resources to which a particular property can apply. In other words, it defines the type of the subject that can use the
 specified property. When you define a property and associate it with a particular domain, you are saying that if this
 property is used, the subject of the statement must be an instance of the class specified by :code:`rdfs:domain`.
