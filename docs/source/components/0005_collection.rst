@@ -49,6 +49,38 @@ Real World Examples
 An Unordered Collection with many Works
 =======================================
 
+Here is a very basic collection:
+
+.. code-block:: turtle
+
+    @prefix ex: <http://example.org/> .
+    @prefix pcdm: <http://pcdm.org/models#> .
+    @prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+    ex:Collection a pcdm:Collection ;
+        dc:title "Image Collection" ;
+        pcdm:hasMember ex:ImageOne, ex:ImageTwo, ex:ImageThree, ex:ImageFour .
+
+    ex:ImageOne a pcdmworks:Work ;
+        dc:title "A Map" ;
+        dc:rights <http://rightsstatements.org/vocab/InC-EDU/1.0/> ;
+        dc:format "reformatted digital" ;
+        dc:type "StillImage", "Text" ;
+        dc:publisher "Texas A & M University. Libraries" ;
+        pcdm:memberOf ex:Collection ;
+        pcdm:hasMember ex:MapFront, ex:MapBack ;
+        pcdm:hasFile ex:GISDataSet .
+
+    ex:ImageTwo a pcdmworks:Work ;
+        dc:title "A Picture of a Cat" ;
+        dc:rights <http://rightsstatements.org/vocab/InC-EDU/1.0/> ;
+        dc:format "reformatted digital" ;
+        dc:type "StillImage", "Text" ;
+        dc:publisher "Texas A & M University. Libraries" ;
+        pcdm:memberOf ex:Collection ;
+        pcdm:hasMember ex:TheActualImage ;
+
+
 A Collection with Many Works and an Attached FileSet
 ====================================================
 
