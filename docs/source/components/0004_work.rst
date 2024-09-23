@@ -44,9 +44,128 @@ A Work **SHOULD**:
 
 * be related to a :code:`pcdmworks:FileSet` or other :code:`pcdm:Object` instance via :code:`pcdm:hasMember`.
 
-A Proxy **MAY**:
+A Work **MAY**:
 
 * have other descriptive metadata properties.
 * have many objects or filesets.
 * have proxies if the canvases in the item are ordered.
 * have ranges if the work has sections.
+
+-------------------
+Real World Examples
+-------------------
+
+A Work Represented by a Single JPEG
+===================================
+
+A Book Made up of Multiple Canvases
+===================================
+
+A Book work may have many pages has FileSets that represent the pages and proxies that help with ordering. It may also
+have ranges.
+
+For this example, many nodes have been omitted to make things easier to read. That being said, it tries to show these
+things:
+
+* A :code:`pcdmworks:Work` can be ordered by :code:`ore:Proxy` resources.
+* A :code:`pcdmworks:Work` may have :code:`pcdmworks:FileSet` and :code:`pcdmworks:Range` resources and both can be ordered by :code:`ore:Proxy` resources.
+* Relationships between a :code:`pcdmworks:Work` and a :code:`pcdmworks:FileSet` or :code:`ore:Proxy` can be done via :code:`pcdm:hasMember` or :code:`pcdm:memberOf` properties on the appropriate instance.
+
+
+.. code-block:: turtle
+
+    @prefix ex: <http://example.org/> .
+    @prefix fedora: <http://fedora.info/definitions/v4/repository#> .
+    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix pcdm: <http://pcdm.org/models#> .
+    @prefix pcdmworks: <http://pcdm.org/works#> .
+    @prefix pcdmuse: <http://pcdm.org/use#> .
+    @prefix pcdmff: <http://pcdm.org/file-format-types#> .
+    @prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+    # This is the Book. Some pages have been omitted to keep graph simpler.
+    ex:BookWork a pcdmworks:Work ;
+        dc:title "An Example Book" ;
+        dc:rights <http://rightsstatements.org/vocab/InC-EDU/1.0/> ;
+        dc:format "reformatted digital" ;
+        dc:type "StillImage", "Text" ;
+        dc:publisher "Texas A & M University. Libraries" ;
+        pcdm:memberOf ex:Collection ;
+        pcdm:hasMember ex:BookPageOneFileset, ex:BookPageSixFileset, ex:BookPageThirtyThreeFileset .
+
+    # This is a Proxy for Page 1 that will be Canvas 1 in a IIIF Manifest and is the Front Cover
+    ex:ProxyForPageOne a ore:Proxy ;
+        ore:proxyIn ex:BookWork ;
+        ore:proxyFor ex:BookPageOneFileset ;
+        iana:next ex:ProxyForPageTwo .
+
+    # This is a Proxy for Page 6 that will be Canvas 6 in a IIIF Manifest and is the start of Chapter 1
+    ex:ProxyForPageSix a ore:Proxy ;
+        ore:proxyIn ex:BookWork ;
+        ore:proxyFor ex:BookPageSixFileset ;
+        iana:prev ex:ProxyForPageFive ;
+        iana:next ex:ProxyForPageSeven .
+
+    # This is a Proxy for Page 33 that will be Canvas 33 in a IIIF Manifest and is the back cover
+    ex:ProxyForPageThirtyThree a ore:Proxy ;
+        ore:proxyIn ex:BookWork ;
+        ore:proxyFor ex:BookPageThirtyThreeFileset ;
+        iana:prev ex:ProxyForPageThirtyTwo .
+
+    # This is a Fileset that includes the files used by Canvas 1 in the presentation manifest.
+    ex:BookPageOneFileset a pcdmworks:Fileset ;
+        rdfs:label "Front Cover" ;
+        pcdm:memberOf ex:BookWork ;
+        pcdm:hasFile ex:Image, ex:HOCR, ex:OCR .
+
+    # This is a Range that represents the Front Cover of a Book and points to the page 1 fileset
+    ex:FrontCover a pcdmworks:Range ;
+        rdfs:label "Front Cover" ;
+        pcdm:memberOf ex:BookWork ;
+        pcdm:hasMember ex:BookPageOneFileset .
+
+    # This is a Proxy for the front cover range in a IIIF Manfiest
+    ex:ProxyForFrontCover a ore:Proxy ;
+        ore:proxyIn ex:BookWork ;
+        ore:proxyFor ex:FrontCover ;
+        iana:next ex:ChapterOne .
+
+    # This is a Range that represents Chapter 1 of a Book and points to the page 6 fileset
+    ex:ChapterOne a pcdmworks:Range ;
+        rdfs:label "Front Cover" ;
+        pcdm:memberOf ex:BookWork ;
+        pcdm:hasMember ex:BookPageSixFileset .
+
+    # This is a Proxy for the chapter one range in a IIIF Manfiest
+    ex:ProxyForChapterOne a ore:Proxy ;
+        ore:proxyIn ex:BookWork ;
+        ore:proxyFor ex:ChapterOne ;
+        iana:next ex:ChapterTwo .
+
+    # This is a Range that represents Chapter 33 of a Book and points to the page 33 fileset
+    ex:BackCover a pcdmworks:Range ;
+        rdfs:label "Back Cover" ;
+        pcdm:memberOf ex:BookWork ;
+        pcdm:hasMember ex:BookPageThirtyThreeFileset .
+
+    # This is a Proxy for the back cover in a IIIF Manfiest
+    ex:ProxyForBackCover a ore:Proxy ;
+        ore:proxyIn ex:BookWork ;
+        ore:proxyFor ex:BackCover ;
+        iana:prev ex:ChapterThree .
+
+    ex:Image a pcdmuse:ServiceFile, pcdmff:Image ;
+        pcdm:fileOf ex:BookPageOneFileset ;
+        fedora:hasBinary <https://path/to/image_0001.jp2> .
+
+    ex:HOCR a pcdmff:HTML ;
+        pcdm:fileOf ex:BookPageOneFileset ;
+        fedora:hasBinary <https://path/to/image_0001.html> .
+
+    ex:OCR a pcdmuse:ExtractedText ;
+        pcdm:fileOf ex:BookPageOneFileset ;
+        fedora:hasBinary <https://path/to/image_0001.txt> .
+
+A Map with one Canvas and an attached Dataset
+=============================================
