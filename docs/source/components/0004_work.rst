@@ -155,17 +155,91 @@ things:
         ore:proxyFor ex:BackCover ;
         iana:prev ex:ChapterThree .
 
+    # An Image Canvas
     ex:Image a pcdmuse:ServiceFile, pcdmff:Image ;
         pcdm:fileOf ex:BookPageOneFileset ;
         fedora:hasBinary <https://path/to/image_0001.jp2> .
 
+    # Where to write text on the Canvas above.
     ex:HOCR a pcdmff:HTML ;
         pcdm:fileOf ex:BookPageOneFileset ;
         fedora:hasBinary <https://path/to/image_0001.html> .
 
+    # Text to index about the canvas.
     ex:OCR a pcdmuse:ExtractedText ;
         pcdm:fileOf ex:BookPageOneFileset ;
         fedora:hasBinary <https://path/to/image_0001.txt> .
 
 A Map with one Canvas and an attached Dataset
 =============================================
+
+A Map might be single or multi-canvased and also might have files that aren't for display.
+
+Some nodes are omitted to keep things simple.
+
+
+.. code-block:: turtle
+
+    @prefix ex: <http://example.org/> .
+    @prefix fedora: <http://fedora.info/definitions/v4/repository#> .
+    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix pcdm: <http://pcdm.org/models#> .
+    @prefix pcdmworks: <http://pcdm.org/works#> .
+    @prefix pcdmuse: <http://pcdm.org/use#> .
+    @prefix pcdmff: <http://pcdm.org/file-format-types#> .
+    @prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+    # This is a Map with a Front and a Back.
+    ex:Map a pcdmworks:Work ;
+        dc:title "A Map with 2 Canvases and an attached Dataset" ;
+        dc:rights <http://rightsstatements.org/vocab/InC-EDU/1.0/> ;
+        dc:format "reformatted digital" ;
+        dc:type "StillImage", "Text" ;
+        dc:publisher "Texas A & M University. Libraries" ;
+        pcdm:memberOf ex:Collection ;
+        pcdm:hasMember ex:MapFront, ex:MapBack ;
+        pcdm:hasFile ex:GISDataSet .
+
+    # This is a Fileset for the Front
+    ex:MapFrontFileset a pcdmworks:Fileset ;
+        rdfs:label "Map Front" ;
+        pcdm:memberOf ex:Map ;
+        pcdm:hasFile ex:Image, ex:HOCR, ex:OCR .
+
+    # This is a Fileset for the Back
+    ex:MapBackFileset a pcdmworks:Fileset ;
+        rdfs:label "Map Back" ;
+        pcdm:memberOf ex:Map ;
+        pcdm:hasFile ex:ImageTwo, ex:HOCRTwo, ex:OCRTwo .
+
+    # This is a Proxy for the front of the map
+    ex:MapProxyForFront a ore:Proxy ;
+        ore:proxyIn ex:Map ;
+        ore:proxyFor ex:MapFrontFileset ;
+        iana:next ex:MapBackFileset .
+
+    # This is a Proxy for the back of the map
+    ex:MapProxyForBack a ore:Proxy ;
+        ore:proxyIn ex:Map ;
+        ore:proxyFor ex:MapBackFileset ;
+        iana:prev ex:MapFrontFileset .
+
+    # An Image Canvas
+    ex:Image a pcdmuse:ServiceFile, pcdmff:Image ;
+        pcdm:fileOf ex:MapFrontFileset ;
+        fedora:hasBinary <https://path/to/image_0001.jp2> .
+
+    # Where to write text on the Canvas above.
+    ex:HOCR a pcdmff:HTML ;
+        pcdm:fileOf ex:MapFrontFileset ;
+        fedora:hasBinary <https://path/to/image_0001.html> .
+
+    # Text to index about the canvas.
+    ex:OCR a pcdmuse:ExtractedText ;
+        pcdm:fileOf ex:MapFrontFileset ;
+        fedora:hasBinary <https://path/to/image_0001.txt> .
+
+    ex:GISDataSet a pcdmff:GIS, pdcmff:DataSet ;
+        pcdm:fileOf ex:Map ;
+        fedora:hasBinary <https://path/to/gis_dataset.zip> .
