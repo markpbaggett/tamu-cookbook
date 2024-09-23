@@ -54,8 +54,8 @@ When adopting predicates and classes for work and file types, we adhere to rules
 :code:`rdfs:range` properties.
 
 :code:`rdfs:domain` is a property in RDF Schema (RDFS) that specifies the class (or classes) of
-resources to which a particular property can apply. In other words, it defines the type of the subject that can use the
-specified property. When you define a property and associate it with a particular domain, you are saying that if this
+resources to which a particular property can apply. In other words, it defines what the :code:`rdf:type` of the subject
+of a triple must bbe. When you define a property and associate it with a particular domain, you are saying that if this
 property is used, the subject of the statement must be an instance of the class specified by :code:`rdfs:domain`.
 If a resource is found to use this property, it is inferred that the resource belongs to the class defined by
 :code:`rdfs:domain`, even if it hasn’t been explicitly typed as such.
