@@ -32,3 +32,10 @@ In this document, certain valid properties and classes have been intentionally o
 possible. While doing this is valid, it may cause problems for other institutions that try to adopt any software we
 write or try to write with the community. As a result, we need to decide whether we should add more complex components
 or simply try to account for other approaches in third party tooling we write.
+
+---------------------------------------------------------------------------------
+Should Canvases be an Instance of pcdmuse:IntermediateFile or pcdmuse:ServiceFile
+---------------------------------------------------------------------------------
+
+Depending on what we ultimately decide to store and serve, we need to choose one of the two options and reflect the
+decision across all attached documentation.
