@@ -57,6 +57,18 @@ A File **MAY**:
 * have :code:`0-1` :code:`dcterms:modified` values with the last modification date.
 * have other descriptive and technical metadata properties.
 
+---------
+Valid Use
+---------
+
+A :code:`pcdm:File` is valid as the subject of triples with these properties:
+
+* :code:`pcdm:fileOf`
+
+A :code:`pcdm:File` is valid as the object of triples with these properites:
+
+* :code:`pcdm:hasFile`
+
 --------
 Examples
 --------

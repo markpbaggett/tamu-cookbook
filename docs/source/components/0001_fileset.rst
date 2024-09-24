@@ -38,6 +38,26 @@ A FileSet **MAY**:
 * have a :code:`pcdm:memberOf` property that refers to its parent resource.
 * have other descriptive metadata properties.
 
+---------
+Valid Use
+---------
+
+**WARNING**: This section is informed strictly by :code:`rdfs:domain` and :code:`rdfs:range` rules. It does not
+necessarily reflect guidance elsewhere in these documents.
+
+A :code:`pcdmworks:FileSet` is valid as the subject of triples with these properties:
+
+* :code:`pcdm:hasMember`
+* :code:`pcdm:hasRelatedObject`
+* :code:`pcdm:memberOf`
+* :code:`pcdm:relatedObjectOf`
+
+A :code:`pcdm:FileSet` is valid as the object of triples with these properites:
+
+* :code:`pcdm:hasMember`
+* :code:`pcdm:memberOf`
+* :code:`pcdm:relatedObjectOf`
+
 -------------------
 Real World Examples
 -------------------
