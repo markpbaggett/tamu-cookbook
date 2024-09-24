@@ -41,3 +41,11 @@ external tooling.
    :glob:
 
    work-types/*
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Recipes
+   :glob:
+
+   recipes/*
+
