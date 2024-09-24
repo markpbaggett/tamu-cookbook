@@ -20,3 +20,15 @@ Existing Fedora Content
 
 We have a lot of content already modelled in Fedora.  My instinct is to keep that stuff modelled as is and instead build
 logic to look for new models whether than readjusting.  Can we do that?
+
+-------------------------------------
+Omitting Valid Properties and Classes
+-------------------------------------
+
+PCDM is designed not to express a specific method that must be followed to create a certain concept. Instead, PCDM
+allows for flexibility and room for institutions to approach problems differently for their own use cases.
+
+In this document, certain valid properties and classes have been intentionally omitted to keep things as simple as
+possible. While doing this is valid, it may cause problems for other institutions that try to adopt any software we
+write or try to write with the community. As a result, we need to decide whether we should add more complex components
+or simply try to account for other approaches in third party tooling we write.
