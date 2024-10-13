@@ -14,6 +14,10 @@ In PCDM, there are two other ontologies that extend :code:`pcdm:File`:
 These extensions allow us to make something not just a file, but a specific type of file with a specific purpose. Having
 the ability to do this allows us to have more flexibility in our repository and interoperable applications.
 
+In Fedora, the :code:`/fcr:metadata` suffix is appended to the end of URI paths for binary files so that an RDF representation
+of the binary exists with the resource. Using this plus philosophy from RDF, we can both adhere and make meaningful connections
+to our resources.
+
 -------------
 Minimum Model
 -------------
@@ -28,7 +32,7 @@ A simple File may have many more properties, but should look something like this
     @prefix pcdm: <http://pcdm.org/models#> .
 
 
-    ex:File a pcdm:File ;
+    <https://path/to/file.bin/fcr:metadata> a pcdm:File ;
         pcdm:fileOf ex:Object ;
         fedora:hasBinary <https://path/to/file.bin> .
 
@@ -38,7 +42,7 @@ Rules and Guidelines
 
 A File **MUST**:
 
-* be a RDF resource and an instance of :code:`pcdm:File` with an :code:`rdf:type` property that asserts this.
+* be a RDF resource and an instance of :code:`pcdm:File` with an :code:`rdf:type` property that asserts this. This can be via a subclass of :code:`pcdm:File`.
 * have 1 :code:`fedora:hasBinary` property with :code:`1` binary datastreams if versioning is not enabled.
 * have 0 :code:`fedora:hasBinary` properties and 1 :code:`fedora:hasVersions` property with :code:`1-n` :class:`Version` resources.
 

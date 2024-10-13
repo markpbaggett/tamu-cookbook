@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.12"
 Sphinx = "^8.0.2"
 furo = "^2024.8.6"
+iiif-prezi3 = "^1.2.1"
 
 
 [build-system]
