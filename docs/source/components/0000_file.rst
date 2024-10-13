@@ -116,10 +116,10 @@ In this case, a IIIF Canvas should look something like this:
     @prefix fedora: <http://fedora.info/definitions/v4/repository#> .
     @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
     @prefix pcdm: <http://pcdm.org/models#> .
+    @prefix pcdmff: <https://pcdm.org/2015/10/14/file-format-types#> .
     @prefix pcdmuse: <http://pcdm.org/use#> .
 
-
-    ex:CanvasImage a pcdm:File, pcdmuse:ServiceFile ;
+    ex:CanvasImage a pcdmff:Image, pcdmuse:ServiceFile ;
         pcdm:fileOf ex:FileSetWithCorrespondingImage ;
         fedora:hasBinary <https://path/to/file.jp2> .
 
@@ -142,7 +142,7 @@ It also might be less likely to have corresponding files like OCR and HOCR.  In 
     @prefix premis: <http://www.loc.gov/premis/rdf/v1#> .
 
 
-    ex:PreservationImage a pcdm:File, pcdmuse:PreservationFile ;
+    ex:PreservationImage a pcdmff:Image, pcdmuse:PreservationFile ;
         pcdm:fileOf ex:ImageWork ;
         fedora:hasBinary <https://path/to/preservation-file.tif> .
         ebucore:width "2106"^^<http://www.w3.org/2001/XMLSchema#string> ;

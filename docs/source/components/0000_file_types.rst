@@ -24,5 +24,55 @@ Philosophy
 ----------
 
 There are multiple ways to model files. For our purposes, we do not care about capturing every subclass that applies to
-a file. Instead, we want to prescribe and select subclasses that apply to our use cases.  For this reason, we will often
-only use 1 subclass in this document unless the use case is complex enough that it requires two.
+a single file. Instead, we want to prescribe and select subclasses that apply to our use cases in as few conepts as possible.
+For this reason, we will attempt to apply only one subclass per File unless additional classes are needed to successully
+capture semantic meaning.
+
+--------
+Canvases
+--------
+
+A Canvas, as defined by `IIIF presentation <https://iiif.io/api/presentation/3.0/#53-canvas>`_, acts as a central point
+for assembling the different content resources that make up the display of a work. In IIIF, files with a
+:code:`motivation="painting"` are added to the canvas and displayed directly to users in a viewer, while other Files may
+be served by the viewer indirectly. In our repository, we need a way to differentiate between these types of files. This
+section describes the different file types that may be painted on a :code:`canvas`.
+
+Image
+=====
+
+.. important::
+
+    Images may be stored as a file of a work but not intended for display.  For our purposes, these are not Images.
+
+Any images that are painted on a :code:`Canvas` should be an instance of :code:`pcdmff:Image`. Images of pages of books
+may need to be a part of a :code:`pcdmworks:FileSet` in order to be understood with OCR. Regardless an image that is painted
+on a canvas should look something like this and may have more or fewer triples depending on decisions made elsewhere in
+this document:
+
+.. code-block:: turtle
+
+    @prefix ex: <http://example.org/> .
+    @prefix fedora: <http://fedora.info/definitions/v4/repository#> .
+    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix pcdm: <http://pcdm.org/models#> .
+    @prefix pcdmuse: <http://pcdm.org/use#> .
+    @prefix nepomuk: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#> .
+    @prefix exif: <http://www.w3.org/2003/12/exif/ns#> .
+    @prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+    @prefix premis: <http://www.loc.gov/premis/rdf/v1#> .
+
+    ex:Image a pcdmff:Image;
+        pcdm:fileOf ex:ImageWork ;
+        fedora:hasBinary <https://path/to/preservation%20file.tif> .
+        ebucore:width "2106"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        ebucore:fileSize "17765536"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        premis:hasSize "17765536"^^<http://www.w3.org/2001/XMLSchema#long> ;
+        exif:orientation "normal*"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        exif:colorSpace "RGB"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        ebucore:hasMimeType "image/tiff"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        ebucore:height "2808"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        nepomuk:hashValue "99d14ee8c28517e10c637e0e0a675b94"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        ebucore:filename "preservation file.tif"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        exif:software "Adobe Photoshop CS2 Windows"^^<http://www.w3.org/2001/XMLSchema#string> .
+
