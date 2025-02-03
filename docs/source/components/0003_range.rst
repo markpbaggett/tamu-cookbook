@@ -36,7 +36,7 @@ A simple :code:`Range` may have many more properties, but should look something 
 Rules and Guidelines
 --------------------
 
-A Proxy **MUST**:
+A Range **MUST**:
 
 * be an instance of :code:`pcdmworks:Range` via the :code:`rdf:type` property.
 * be related to a parent Work via :code:`pcdm:memberOf` or :code:`pcdm:hasMember`.
@@ -44,7 +44,7 @@ A Proxy **MUST**:
 * have a label in a property like :code:`rdfs:label` unless its not intended for viewing. This requirement comes from IIIF presentation's requirement for client viewers making use of these concepts.
 * use :code:`iana` properties and :code:`ore:Proxy` classes for ordering of the ranges.
 
-A Proxy **MAY**:
+A Range **MAY**:
 
 * have other descriptive metadata properties.
 

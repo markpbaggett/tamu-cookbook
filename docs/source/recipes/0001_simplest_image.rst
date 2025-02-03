@@ -6,8 +6,8 @@ Simplest Image - No Filesets or Proxies
 Use Case
 --------
 
-A librarian wants to put an Image work online in an exhibit. The work consists of one file, :code:`image.jpg`, and
-descriptive metadata.
+A librarian wants to put an Image work online in an exhibit so that it can be shared and potentially annotated. The work
+consists of one file, :code:`image.jpg`, and descriptive metadata about the file.
 
 --------------------
 Implementation Notes
